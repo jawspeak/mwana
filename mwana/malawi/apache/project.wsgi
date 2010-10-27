@@ -1,7 +1,7 @@
 import os
 import os.path
 import sys
-
+import site
 
 #Calculate the project path based on the location of the WSGI script.
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
