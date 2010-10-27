@@ -11,7 +11,7 @@ SEND_LIVE_LABRESULTS = True
 DEBUG = False
 
 ADMINS = (
-    ('Tobias McNulty', 'mwana@caktusgroup.com');
+    ('Tobias McNulty', 'mwana@caktusgroup.com'),
 )
 
 MANAGERS = ADMINS
