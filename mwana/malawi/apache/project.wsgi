@@ -4,8 +4,8 @@ import sys
 import site
 
 #Calculate the project path based on the location of the WSGI script.
-PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-VIRTUALENV_ROOT = os.path.join(os.path.dirname(PROJECT_ROOT), 'env')
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+VIRTUALENV_ROOT = os.path.join(PROJECT_ROOT, 'env')
 
 SHOW_UPGRADE_MESSAGE = False
 ADMIN_IPS = ('127.0.0.1',)
