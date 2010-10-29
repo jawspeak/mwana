@@ -1,4 +1,4 @@
-from mwana.settings import *
+from mwana.malawi.settings_all import *
 
 # temporarily disable the entire project in the production environment
 # until we get approval

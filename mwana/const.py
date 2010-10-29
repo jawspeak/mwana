@@ -1,15 +1,16 @@
+from django.conf import settings
+
 from mwana.apps.contactsplus.models import ContactType
 from rapidsms.contrib.locations.models import LocationType
 
 # contact types:
-CBA_SLUG = 'cba'
-PATIENT_SLUG = 'patient'
-CLINIC_WORKER_SLUG = 'worker'
+CBA_SLUG = settings.RESULTS160_SETTINGS['CBA_SLUG']
+PATIENT_SLUG = settings.RESULTS160_SETTINGS['PATIENT_SLUG']
+CLINIC_WORKER_SLUG = settings.RESULTS160_SETTINGS['CLINIC_WORKER_SLUG']
 
 # location types:
-CLINIC_SLUGS = ('urban_health_centre', '1st_level_hospital',
-                'rural_health_centre', 'health_post')
-ZONE_SLUG = 'zone'
+CLINIC_SLUGS = settings.RESULTS160_SETTINGS['CLINIC_SLUGS']
+ZONE_SLUG = settings.RESULTS160_SETTINGS['ZONE_SLUG']
 
 # apps
 LAB_RESULTS_APP = "mwana.apps.labresults"
