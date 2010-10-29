@@ -45,19 +45,19 @@ LOG_SIZE = 1000000 # in bytes
 LOG_BACKUPS = 256     # number of logs to keep around
 
 # TODO add commented tabs to respective urls.py files
-TABS = [
-    ('rapidsms.views.dashboard', 'Dashboard'),
-#    ('rapidsms.contrib.httptester.views.generate_identity', 'Message Tester'),
-    ('rapidsms.contrib.locations.views.dashboard', 'Map'),
-#    ('rapidsms.contrib.messagelog.views.message_log', 'Message Log'),
-#    ('rapidsms.contrib.messaging.views.messaging', 'Messaging'),
-#    ('rapidsms.contrib.registration.views.registration', 'Registration'),
-#    ('rapidsms.contrib.scheduler.views.index', 'Event Scheduler'),
-#    ('mwana.apps.supply.views.dashboard', 'Supplies'),
-#    ('mwana.apps.labresults.views.dashboard', 'Results160'),
-    ('mwana.apps.labresults.views.mwana_reports', 'Reports'),
-    ('mwana.apps.alerts.views.mwana_alerts', 'Alerts'),
-]
+#TABS = [
+#    ('rapidsms.views.dashboard', 'Dashboard'),
+##    ('rapidsms.contrib.httptester.views.generate_identity', 'Message Tester'),
+#    ('rapidsms.contrib.locations.views.dashboard', 'Map'),
+##    ('rapidsms.contrib.messagelog.views.message_log', 'Message Log'),
+##    ('rapidsms.contrib.messaging.views.messaging', 'Messaging'),
+##    ('rapidsms.contrib.registration.views.registration', 'Registration'),
+##    ('rapidsms.contrib.scheduler.views.index', 'Event Scheduler'),
+##    ('mwana.apps.supply.views.dashboard', 'Supplies'),
+##    ('mwana.apps.labresults.views.dashboard', 'Results160'),
+#    ('mwana.apps.labresults.views.mwana_reports', 'Reports'),
+#    ('mwana.apps.alerts.views.mwana_alerts', 'Alerts'),
+#]
 
 from mwana.logconfig import init_email_handler
 init_email_handler(EMAIL_HOST, DEFAULT_FROM_EMAIL, ADMINS,
