@@ -152,7 +152,8 @@ def touch():
     Forces a reload of the WSGI Django application in Apache by modifying
     the last-modified time on the wsgi file.
     """
-    run('touch %s' % PATH_SEP.join((env.path, 'mwana', 'apache', 'project.wsgi')))
+    run('touch %s' % PATH_SEP.join((env.path, 'mwana', 'malawi','apache',
+                                    'project.wsgi')))
 
 
 def install_init_script():
