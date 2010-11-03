@@ -522,10 +522,12 @@ class Results160Reports:
         """
         start = self.dbsr_startdate.date()
         end = self.dbsr_enddate.date()
-        earliest_start = Result.objects.order_by('result_sent_date').\
-        filter(notification_status='sent')[0].result_sent_date.date()
-
-        start = max(start, earliest_start)
+        try:
+            earliest_start = Result.objects.order_by('result_sent_date').\
+            filter(notification_status='sent')[0].result_sent_date.date()
+        except IndexError:
+            earliest_start = None
+        start = earliest_start and max(start, earliest_start) or start
         end = min(end, date.today())
         diff = (end - start).days
         if diff > self.MAX_REPORTING_PERIOD:
@@ -591,11 +593,11 @@ class Results160Reports:
         percent_negative_provinces = []
         percent_rejected_provinces = []
         provinces = self.get_distinct_parents(self.get_distinct_parents(self.get_active_facilities()))
-
-        for province in provinces:
-            percent_positive_provinces.append((percent(results.filter(result__iexact='P', clinic__parent__parent=province).count(), self.get_total_results_in_province(province)), province.name))
-            percent_negative_provinces.append((percent(results.filter(result__iexact='N', clinic__parent__parent=province).count(), self.get_total_results_in_province(province)), province.name))
-            percent_rejected_provinces.append((percent(results.filter(result__in='XIR', clinic__parent__parent=province).count(), self.get_total_results_in_province(province)), province.name))
+        if provinces:
+            for province in provinces:
+                percent_positive_provinces.append((percent(results.filter(result__iexact='P', clinic__parent__parent=province).count(), self.get_total_results_in_province(province)), province.name))
+                percent_negative_provinces.append((percent(results.filter(result__iexact='N', clinic__parent__parent=province).count(), self.get_total_results_in_province(province)), province.name))
+                percent_rejected_provinces.append((percent(results.filter(result__in='XIR', clinic__parent__parent=province).count(), self.get_total_results_in_province(province)), province.name))
             
                     
         
