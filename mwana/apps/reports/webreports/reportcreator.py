@@ -230,9 +230,9 @@ class Results160Reports:
             unprocessed = self.get_results_by_status_and_location(['unprocessed'], location).count()
             total = self.get_results_by_status_and_location(['updated', 'new',
                                                             'notified', 'unprocessed'], location).count()
-
-            table.append([' ' + location.parent.name, ' ' + location.name, \
-                         new, notified, updated, unprocessed, total])
+            district_name = location.parent and location.parent.name or ' '
+            table.append([' ' + district_name, ' ' + location.name,\
+                          new, notified, updated, unprocessed, total])
             tt_new = tt_new + new
             tt_notified = tt_notified + notified
             tt_updated = tt_updated + updated
