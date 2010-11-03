@@ -11,6 +11,11 @@ CLINIC_WORKER_SLUG = settings.RESULTS160_SETTINGS['CLINIC_WORKER_SLUG']
 # location types:
 CLINIC_SLUGS = settings.RESULTS160_SETTINGS['CLINIC_SLUGS']
 ZONE_SLUG = settings.RESULTS160_SETTINGS['ZONE_SLUG']
+DISTRICT_SLUG = settings.RESULTS160_SETTINGS['DISTRICT_SLUG']
+# PROVINCE_SLUG is optional (not all countries have provinces)
+# it should NOT be set to None, as that would cause filters by the 'province'
+# type to effectively return any type of location
+PROVINCE_SLUG = settings.RESULTS160_SETTINGS.get('PROVINCE_SLUG', 'province')
 
 # apps
 LAB_RESULTS_APP = "mwana.apps.labresults"

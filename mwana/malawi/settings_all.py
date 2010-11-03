@@ -9,6 +9,8 @@ from mwana.settings import *
 #    'CLINIC_SLUGS': ('urban_health_centre', '1st_level_hospital',
 #                    'rural_health_centre', 'health_post'),
 #    'ZONE_SLUG': 'zone',
+#    'DISTRICT_SLUG': 'districts', # XXX verify me
+#    'PROVINCE_SLUG': 'provinces', # XXX verify me
 #}
 
 # Malawi:
@@ -22,4 +24,5 @@ RESULTS160_SETTINGS = {
                      'district_hospital', 'central_hospital',
                      'voluntary_counselling', 'rehabilitation_centre'),
     'ZONE_SLUG': 'zone',
+    'DISTRICT_SLUG': 'district',
 }

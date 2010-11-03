@@ -6,6 +6,7 @@ from datetime import timedelta
 from django.db import connection
 from django.db.models import Q
 from django.db.models import Sum
+from mwana import const
 from mwana.apps.labresults.models import Result
 from mwana.apps.labresults.models import SampleNotification
 from rapidsms.contrib.locations.models import Location
@@ -559,12 +560,14 @@ class Results160Reports:
             table.append([key, value])
 
         return single_bar_length, sum(days.values()), sorted(table, key=itemgetter(0, 1))
-    def get_distinct_parents(self, locations):
+
+    def get_distinct_parents(self, locations, type_slug=None):
         if not locations:
             return None
         parents = []
         for location in locations:
-            parents.append(location.parent)
+            if not type_slug or (location.parent and location.parent.type.slug == type_slug):
+                parents.append(location.parent)
         return list(set(parents))
 
     def get_total_results_in_province(self, province):
@@ -592,7 +595,9 @@ class Results160Reports:
         percent_positive_provinces = []
         percent_negative_provinces = []
         percent_rejected_provinces = []
-        provinces = self.get_distinct_parents(self.get_distinct_parents(self.get_active_facilities()))
+        facilities = self.get_active_facilities()
+        districts = self.get_distinct_parents(facilities, type_slug=const.DISTRICT_SLUG)
+        provinces = self.get_distinct_parents(districts, type_slug=const.PROVINCE_SLUG)
         if provinces:
             for province in provinces:
                 percent_positive_provinces.append((percent(results.filter(result__iexact='P', clinic__parent__parent=province).count(), self.get_total_results_in_province(province)), province.name))
