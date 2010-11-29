@@ -6,10 +6,11 @@ cat <<EOF
 This is helpful for speeding up tests. Have test_localsettings.py
   point to /tmp/ramdisk/test_db.sqlite3 after mounting a ramdisk
   with this script.
-usage: $0 [-m] [-l]
+usage: $0 [-m] [-l] [-s]
 OPTIONS:
    -m      Make Mac OS X Ramdisk
-   -l      Make Linux ramdisk (not yet implemented)
+   -l      Make Linux ramdisk (Ubuntu, not yet implemented)
+   -s      Make Suse ramdisk 
 EOF
 }
 
@@ -30,8 +31,17 @@ make_linux_ramdisk() {
   # sudo mount -t tmpfs -o size=8M tmpfs /tmp/ramdisk/
 }
 
+make_suse_ramdisk() {
+  sudo mknod /dev/ram1 b 1 1
+  sudo chown root:disk /dev/ram1 
+  sudo chmod 0660 /dev/ram1 
+  sudo mkfs -t ext4 -q /dev/ram1 131072
+  sudo mkdir -p /tmp/ramcache
+  sudo mount /dev/ram1 /tmp/ramdisk
+  sudo chmod 777 /tmp/ramdisk
+}
 
-while getopts "mlh" OPTION
+while getopts "mlsh" OPTION
 do
     case $OPTION in
         m)
@@ -42,6 +52,10 @@ do
             make_linux_ramdisk
               echo "TODO: implement me (see this script for possible example)"
             exit 1 # TODO exit 1 when implemented
+            ;;
+        s)
+            make_suse_ramdisk
+            exit 0
             ;;
         ?)
             usage
